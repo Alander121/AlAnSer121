@@ -1,0 +1,220 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2._22
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            const float pi = 3.1415926535897932384626433832795f;
+            double x, y;
+            Console.Write("Введите длину: ");
+            string str1 = Console.ReadLine();
+            bool w = double.TryParse(str1, out x);
+            if (!w)
+            {
+                while (!w)
+                {
+                    str1 = Console.ReadLine();
+                    w = double.TryParse(str1, out x);
+                }
+            }
+            if (x < 0)
+            {
+                x = Math.Abs(x);
+            }
+            Console.Write("\nВведите ширину: ");
+            string str2 = Console.ReadLine();
+            w = double.TryParse(str2, out y);
+            if (!w)
+            {
+                while (!w)
+                {
+                    str2 = Console.ReadLine();
+                    w = double.TryParse(str2, out y);
+                }
+            }
+            if (y < 0)
+            {
+                y = Math.Abs(y);
+            }
+            Прямоугольник a = new Прямоугольник(x, y);
+            a.decision(x, y);
+            a.Print();
+            double z;
+            Console.Write("\nВведите сторону: ");
+            string str3 = Console.ReadLine();
+            w = double.TryParse(str3, out z);
+            if (!w)
+            {
+                while (!w)
+                {
+                    str3 = Console.ReadLine();
+                    w = double.TryParse(str3, out z);
+                }
+            }
+            if (z < 0)
+            {
+                z = Math.Abs(z);
+            }
+            Квадрат i = new Квадрат(z, x, y);
+            i.decision(z);
+            i.Print();
+            double c;
+            Console.Write("\nВведите радиус: ");
+            string str4 = Console.ReadLine();
+            w = double.TryParse(str4, out c);
+            if (!w)
+            {
+                while (!w)
+                {
+                    str4 = Console.ReadLine();
+                    w = double.TryParse(str4, out c);
+                }
+            }
+            if (c < 0)
+            {
+                c = Math.Abs(c);
+            }
+            Круг l = new Круг(c);
+            l.decision(c);
+            l.Print();
+            Console.ReadKey();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2._22
+{
+    interface IPrint
+    {
+        void Print();
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2._22
+{
+    public abstract class Геометрическая_фигура
+    {
+        protected
+            double x = 0, y = 0, r = 0, S = 0;
+        public virtual void decision(double x, double y)
+        {
+            S = 1 * 1;
+        }
+        public virtual void decision(double a)
+        {
+            S = 1 * 1;
+        }
+        public virtual void decision(double r, float pi)
+        {
+            S = 1 * 1 * Math.PI;
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2._22
+{
+    class Прямоугольник : Геометрическая_фигура, IPrint
+    {
+        public Прямоугольник(double x, double y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+        public override void decision(double x, double y)
+        {
+            S = x * y;
+        }
+        public void Print()
+        {
+            Console.Write("Длина = ");
+            Console.Write(x);
+            Console.Write(",Ширина = ");
+            Console.Write(y);
+            Console.Write(",Площадь = ");
+            Console.Write(S);
+            Console.Write(".\n");
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2._22
+{
+    class Квадрат : Прямоугольник
+    {
+        public Квадрат(double r, double x, double y) : base(x, y)
+        {
+            this.r = r;
+        }
+        public override void decision(double r)
+        {
+            S = r * r;
+        }
+        public void Print()
+        {
+            Console.Write("Сторона = ");
+            Console.Write(r);
+            Console.Write(",Площадь = ");
+            Console.Write(S);
+            Console.Write(".\n");
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2._22
+{
+    class Круг : Геометрическая_фигура, IPrint
+    {
+        public Круг(double r)
+        {
+            this.r = r;
+        }
+        public override void decision(double r)
+        {
+            S = r * r * Math.PI;
+        }
+        public void Print()
+        {
+            Console.Write("Радиус = ");
+            Console.Write(r);
+            Console.Write(",Площадь = ");
+            Console.Write(S);
+            Console.Write(".\n");
+        }
+    }
+}
