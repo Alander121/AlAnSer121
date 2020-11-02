@@ -1,0 +1,151 @@
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double D, a, b, c, x1 = -1, x2 = -1, y1 = -1, y2, y3 = -1, y4;
+            string str1 = Console.ReadLine();
+            bool w = double.TryParse(str1, out a);
+            if (!w)
+            {
+                while (!w)
+                {
+                    str1 = Console.ReadLine();
+                    w = double.TryParse(str1, out a);
+                }
+            }
+            string str2 = Console.ReadLine();
+            w = double.TryParse(str2, out b);
+            if (!w)
+            {
+                while (!w)
+                {
+                    str2 = Console.ReadLine();
+                    w = double.TryParse(str2, out b);
+                }
+            }
+            string str3 = Console.ReadLine();
+            w = double.TryParse(str3, out c);
+            if (!w)
+            {
+                while (!w)
+                {
+                    str3 = Console.ReadLine();
+                    w = double.TryParse(str3, out c);
+                }
+            }
+            Console.Write("\n");
+            D = b * b - 4 * a * c;
+            if (D < 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("Нет корней\n");
+            }
+            else if (D == 0)
+            {
+                x1 = -b / 2 * a;
+            }
+            else
+            {
+                x1 = (-b + Math.Sqrt(D))/ 2 * a;
+                x2 = (-b - Math.Sqrt(D)) / 2 * a;
+            }
+            if (D >= 0)
+            {
+                if (x1 < 0 && x2 < 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("Нет корней\n");
+                }
+                else if (x1 >= 0 && x2 <= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    y1 = -Math.Sqrt(x1);
+                    y2 = Math.Sqrt(x1);
+                    if (y1 == 0)
+                    {
+                        Console.Write(0);
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write(y1);
+                        Console.Write(" ");
+                        Console.Write(y2);
+                        Console.Write(" ");
+                    }
+                }
+                else if (x1 <= 0 && x2 >= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    y1 = -Math.Sqrt(x2);
+                    y2 = Math.Sqrt(x2);
+                    if (y1 == 0)
+                    {
+                        Console.Write(0);
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write(y1);
+                        Console.Write(" ");
+                        Console.Write(y2);
+                        Console.Write(" ");
+                    }
+                }
+                else if (x1 >= 0 && x2 >= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    y1 = -Math.Sqrt(x1);
+                    y2 = Math.Sqrt(x1);
+                    y3 = -Math.Sqrt(x2);
+                    y4 = Math.Sqrt(x2);
+                    if (y1 == 0 && y3 == 0)
+                    {
+                        Console.Write(0);
+                        Console.Write(" ");
+                    }
+                    else if (y1 != 0 && y3 == 0)
+                    {
+                        Console.Write(0);
+                        Console.Write(" ");
+                        Console.Write(y1);
+                        Console.Write(" ");
+                        Console.Write(y2);
+                        Console.Write(" ");
+                    }
+                    else if (y1 == 0 && y3 != 0)
+                    {
+                        Console.Write(0);
+                        Console.Write(" ");
+                        Console.Write(y3);
+                        Console.Write(" ");
+                        Console.Write(y4);
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write(y1);
+                        Console.Write(" ");
+                        Console.Write(y2);
+                        Console.Write(" ");
+                        Console.Write(y3);
+                        Console.Write(" ");
+                        Console.Write(y4);
+                        Console.Write(" ");
+                    }
+                }
+            }
+            if (c == 0 && c != y1 && c != y3)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(0);
+                Console.Write(" ");
+            }
+            Console.ReadKey();
+        }
+    }
+}
